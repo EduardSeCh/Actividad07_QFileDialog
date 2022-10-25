@@ -1,5 +1,5 @@
-from cgitb import text
-from PySide2.QtWidgets import QMainWindow
+#from cgitb import text
+from PySide2.QtWidgets import QMainWindow, QFileDialog
 from PySide2.QtCore import Slot
 from ui_mainWindow import Ui_MainWindow
 #incluir clases partuclas 
@@ -18,6 +18,24 @@ class MainWindow(QMainWindow):
         self.ui.pbAgregarInicio.clicked.connect(self.click_agregarInicio)
         self.ui.pbAgregaFinal.clicked.connect(self.click_agregarFinal)
         self.ui.pbMostrar.clicked.connect(self.click_mostrar)
+        #Ad Archivo
+        self.ui.actionAbrir_archivo.triggered.connect(self.actionOpenFile)
+        self.ui.actionGuardar_archivo.triggered.connect(self.actionSaveFile)
+    @Slot()
+    def actionOpenFile(self):
+        print("abir archivo")
+    
+    @Slot()
+    def actionSaveFile(self):
+        #print("Guardar archivo")
+        ubicacion = QFileDialog.getSaveFileName(
+            self,
+            'Guardar archivo',
+            '.',
+            'JSON (*.json)'
+        )[0]
+        print(ubicacion)
+        self.particulas.guardar(ubicacion)
         
     @Slot()
     def click_mostrar(self):

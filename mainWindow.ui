@@ -175,7 +175,7 @@
     <string>Guardar archivo</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+O</string>
+    <string>Ctrl+S</string>
    </property>
   </action>
   <action name="actionAbrir_archivo">
@@ -183,7 +183,7 @@
     <string>Abrir archivo</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+S</string>
+    <string>Ctrl+O</string>
    </property>
   </action>
  </widget>
