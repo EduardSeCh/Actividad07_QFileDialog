@@ -1,8 +1,8 @@
 #from cgitb import text
-from PySide2.QtWidgets import QMainWindow, QFileDialog
+from PySide2.QtWidgets import QMainWindow, QFileDialog, QMessageBox
 from PySide2.QtCore import Slot
 from ui_mainWindow import Ui_MainWindow
-#incluir clases partuclas 
+#incluir clases particlas 
 from Actividad05_ClasesyObjetos.particulas import Particulas
 from Actividad05_ClasesyObjetos.particula import Particula
 class MainWindow(QMainWindow):
@@ -23,9 +23,22 @@ class MainWindow(QMainWindow):
         self.ui.actionGuardar_archivo.triggered.connect(self.actionSaveFile)
     @Slot()
     def actionOpenFile(self):
-        print("abir archivo")
-    
-    @Slot()
+        ubicacion = QFileDialog.getOpenFileName(
+            self,
+            'Abrir archivo',
+            '.',
+            'JSON (*.json)'
+        )[0]
+        if self.particulas.abrir(ubicacion):
+            QMessageBox.information(
+                self,'Exito',
+                'Se abrio el archivo'+ubicacion
+            )
+        else:
+            QMessageBox.critical(
+                self,'Error',
+                'Error al abrir el archivo'+ubicacion
+            )
     def actionSaveFile(self):
         #print("Guardar archivo")
         ubicacion = QFileDialog.getSaveFileName(
@@ -35,8 +48,14 @@ class MainWindow(QMainWindow):
             'JSON (*.json)'
         )[0]
         print(ubicacion)
-        self.particulas.guardar(ubicacion)
-        
+        if self.particulas.guardar(ubicacion):
+            QMessageBox.information(
+                self,"Exito","Archivo guardado"+ubicacion
+            )
+        else:
+            QMessageBox.critical(
+                self,"Error","No se pudo guardar el archivo"+ ubicacion
+            )
     @Slot()
     def click_mostrar(self):
         self.ui.salida.clear()
