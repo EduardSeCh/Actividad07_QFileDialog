@@ -12,11 +12,11 @@
      },
      {
           "id": 2,
-          "origen_x": 110,
-          "origen_y": 220,
-          "destino_x": 330,
-          "destino_y": 440,
-          "velocidad": 550,
+          "origen_x": 112,
+          "origen_y": 223,
+          "destino_x": 334,
+          "destino_y": 445,
+          "velocidad": 556,
           "red": 10,
           "green": 20,
           "blue": 30
